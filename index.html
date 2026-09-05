@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JayFresh Automation — AI Automation Systems for Small Businesses</title>
+<meta name="description" content="JayFresh Automation builds AI-powered n8n, Make, and Zapier workflows for small businesses — mapped, tested, and built to run without supervision." />
+<link rel="icon" type="image/png" href="favicon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="JayFresh Automation — AI Automation Systems for Small Businesses" />
+<meta property="og:description" content="AI automation systems for small businesses — mapped, tested, and built to run without supervision." />
+<meta property="og:image" content="og-image.png" />
+<meta property="og:url" content="https://jayfreshgraphics-boop.github.io/JayFresh-Inc-website/" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="JayFresh Automation — AI Automation Systems for Small Businesses" />
+<meta name="twitter:description" content="AI automation systems for small businesses — mapped, tested, and built to run without supervision." />
+<meta name="twitter:image" content="og-image.png" />
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #12181A;
+    --panel: #1B2224;
+    --copper: #D98F4E;
+    --copper-hover: #e3a066;
+    --amber: #F2B33D;
+    --text: #EDEAE3;
+    --text-dim: #c7cac8;
+    --muted: #8b9895;
+    --faint: #6B7876;
+    --line: #2a3230;
+    --line-soft: #1f2725;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle, rgba(217,143,78,0.06) 1px, transparent 1px);
+    background-size: 26px 26px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--copper); color: var(--bg); }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+  }
+
+  /* continuous power line running the length of the page */
+  .power-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--line) 4%, var(--line) 96%, transparent);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .power-line::after {
+    content: "";
+    position: absolute;
+    left: -3px;
+    width: 8px;
+    height: 140px;
+    background: linear-gradient(180deg, transparent, var(--copper) 45%, var(--amber) 55%, transparent);
+    filter: blur(2px);
+    opacity: 0.85;
+    animation: flowDown 7s linear infinite;
+  }
+  @keyframes flowDown {
+    0% { top: -140px; }
+    100% { top: 100%; }
+  }
+  @media (max-width: 480px) {
+    .power-line { left: 2px; }
+  }
+
+  /* scroll-reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .wrap > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* floating background icons */
+  .bg-icons {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .floating-icon {
+    position: absolute;
+    color: var(--copper);
+    animation-name: floatIcon;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  @keyframes floatIcon {
+    0%   { transform: translateY(0) rotate(0deg); }
+    50%  { transform: translateY(-24px) rotate(8deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+
+  /* build log category thumbnails */
+  .build-thumb-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .build-thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 3px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--copper);
+  }
+  .build-panel.open .build-thumb {
+    border-color: var(--copper);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  h1, h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0;
+  }
+
+  .mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* HERO */
+  header.hero {
+    padding: 100px 0 90px;
+  }
+  @media (min-width: 768px) {
+    header.hero { padding: 130px 0 110px; }
+  }
+
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 44px;
+  }
+  .power-dot {
+    height: 10px; width: 10px; border-radius: 50%;
+    background: var(--copper);
+    animation: dotPulse 2.4s ease-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes dotPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(217,143,78,0.5); }
+    50% { box-shadow: 0 0 0 6px rgba(217,143,78,0); }
+  }
+  .trace-svg { overflow: visible; }
+  .trace-path {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+  }
+  .trace-path.on {
+    animation: traceDraw 1.1s ease-out forwards;
+  }
+  @keyframes traceDraw {
+    to { stroke-dashoffset: 0; }
+  }
+  .brand-label {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  h1.headline {
+    opacity: 0;
+    font-size: 38px;
+    line-height: 1.08;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  h1.headline.on {
+    animation: flickerOn 1.4s ease-out 0.9s forwards;
+  }
+  @media (min-width: 768px) {
+    h1.headline { font-size: 52px; }
+  }
+  @keyframes flickerOn {
+    0% { opacity: 0; }
+    8% { opacity: 1; }
+    10% { opacity: 0.3; }
+    14% { opacity: 1; }
+    16% { opacity: 0.4; }
+    20% { opacity: 1; }
+    100% { opacity: 1; }
+  }
+
+  .lede {
+    font-size: 16px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 52ch;
+    margin: 0 0 32px;
+  }
+  @media (min-width: 768px) {
+    .lede { font-size: 18px; }
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .btn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    display: inline-block;
+  }
+  .btn-solid {
+    background: var(--copper);
+    color: var(--bg);
+  }
+  .btn-solid:hover, .btn-solid:active { background: var(--copper-hover); }
+  .btn-solid:active { transform: scale(0.97); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid #3a4442;
+  }
+  .btn-outline:hover, .btn-outline:active { border-color: var(--copper); }
+  .btn-outline:active { transform: scale(0.97); }
+
+  /* SECTION NODE HEADER */
+  .node {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .node-dot {
+    height: 8px; width: 8px; border-radius: 50%;
+    background: var(--copper);
+    flex-shrink: 0;
+  }
+  .node-line {
+    height: 1px;
+    width: 40px;
+    background: var(--line);
+    flex-shrink: 0;
+  }
+  .node-label {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  section {
+    padding-bottom: 64px;
+  }
+  @media (min-width: 768px) {
+    section { padding-bottom: 80px; }
+  }
+
+  h2.section-title {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  @media (min-width: 768px) {
+    h2.section-title { font-size: 26px; }
+  }
+
+  section p {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+    margin: 0 0 16px;
+  }
+
+  /* STACK */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px 32px;
+  }
+  @media (min-width: 600px) {
+    .stack-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .stack-group-label {
+    font-size: 13px;
+    color: var(--faint);
+    margin-bottom: 8px;
+  }
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip {
+    font-size: 13px;
+    color: var(--text-dim);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 4px 10px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .chip:active {
+    border-color: var(--copper);
+    color: var(--text);
+  }
+
+  /* BUILD LOG FILTERS */
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .filter-btn {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .filter-btn:hover, .filter-btn:active { border-color: #3a4442; }
+  .filter-btn:active { transform: scale(0.96); }
+  .filter-btn.active {
+    border-color: var(--copper);
+    color: var(--copper);
+  }
+
+  /* BUILD PANELS */
+  .build-list {
+    border-top: 1px solid var(--line-soft);
+  }
+  .build-panel {
+    border-bottom: 1px solid var(--line-soft);
+    border-left: 2px solid var(--line);
+    transition: border-left-color 0.3s, background-color 0.2s;
+  }
+  .build-panel.open {
+    border-left-color: var(--copper);
+    background-color: rgba(217,143,78,0.03);
+  }
+  .build-panel-head {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 14px 12px 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font: inherit;
+    transition: background-color 0.15s;
+  }
+  .build-panel-head:active {
+    background-color: rgba(217,143,78,0.06);
+  }
+  .build-id {
+    font-size: 10px;
+    color: var(--faint);
+    text-align: center;
+    margin-top: 3px;
+    display: block;
+  }
+  .build-head-main { flex: 1; min-width: 0; }
+  .build-title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+  }
+  .build-title {
+    font-size: 17px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+  .tag-flagship {
+    color: var(--amber);
+    border: 1px solid #4a3a20;
+  }
+  .tag-shipped {
+    color: #8fb89a;
+    border: 1px solid #2d4535;
+  }
+  .tag-progress {
+    color: #c9a662;
+    border: 1px solid #4a3f20;
+  }
+  .build-category {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .build-plus {
+    color: var(--faint);
+    padding-top: 4px;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+    font-size: 18px;
+  }
+  .build-panel.open .build-plus {
+    transform: rotate(45deg);
+  }
+  .build-detail {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+  }
+  .build-panel.open .build-detail {
+    max-height: 600px;
+  }
+  .build-detail-inner {
+    padding: 0 16px 24px 72px;
+  }
+  .detail-label {
+    font-size: 12px;
+    color: var(--faint);
+    margin-bottom: 4px;
+  }
+  .detail-text {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 0 0 12px;
+    max-width: none;
+  }
+  .impact-text {
+    font-size: 13.5px;
+    color: var(--copper);
+    margin: 0 0 12px;
+  }
+  .tool-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding-top: 4px;
+  }
+  .tool-chip {
+    font-size: 12px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 2px 8px;
+  }
+  .value-text {
+    font-size: 12px;
+    color: var(--faint);
+    margin-left: auto;
+  }
+
+  /* FOOTER */
+  footer {
+    padding-bottom: 100px;
+  }
+  @media (min-width: 768px) {
+    footer { padding-bottom: 130px; }
+  }
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 14px;
+    margin-bottom: 64px;
+  }
+  @media (min-width: 600px) {
+    .contact-row { flex-direction: row; gap: 32px; }
+  }
+  .contact-row a { color: var(--copper); }
+  .contact-row a:hover { color: var(--copper-hover); }
+  .footer-brand {
+    font-size: 12px;
+    color: #5a6663;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-icons" id="bgIcons"></div>
+
+<div class="wrap">
+  <div class="power-line"></div>
+
+  <header class="hero">
+    <div class="brand-row">
+      <span class="power-dot"></span>
+      <svg width="64" height="12" class="trace-svg">
+        <line id="tracePath" x1="0" y1="6" x2="60" y2="6" stroke="#D98F4E" stroke-width="1.5" class="trace-path" />
+      </svg>
+      <span class="brand-label mono">JayFresh Automation</span>
+    </div>
+
+    <h1 class="headline" id="headline">Automation, engineered.</h1>
+
+    <p class="lede">
+      I'm Julius. I build AI automation systems for small businesses —
+      mapped end to end, tested under real load, and built to keep
+      running long after I hand it over.
+    </p>
+
+    <div class="cta-row">
+      <a href="https://wa.me/2347082993085" class="btn btn-solid">Talk on WhatsApp</a>
+      <a href="#log" class="btn btn-outline">See the build log</a>
+    </div>
+  </header>
+
+  <section class="reveal">
+    <div class="node">
+      <span class="node-dot"></span>
+      <span class="node-line"></span>
+      <span class="node-label mono">approach</span>
+    </div>
+    <h2 class="section-title">Built to run without you watching it.</h2>
+    <p>
+      JayFresh Automation builds AI-powered workflows for small
+      businesses — the kind of repetitive, manual work that quietly eats
+      hours every week. I map the process end to end before touching a
+      single node, think through what happens when a step fails, and
+      test under real conditions before anything goes live.
+    </p>
+    <p>
+      I build on n8n, Make, and Zapier — wired to OpenAI, Claude, and
+      Groq — connected to the tools a business already uses, so the
+      system fits into how they work instead of asking them to change.
+    </p>
+  </section>
+
+  <section class="reveal">
+    <div class="node">
+      <span class="node-dot"></span>
+      <span class="node-line"></span>
+      <span class="node-label mono">stack</span>
+    </div>
+    <div class="stack-grid">
+      <div>
+        <p class="stack-group-label">Automation platforms</p>
+        <div class="chip-row">
+          <span class="chip">n8n</span><span class="chip">Make.com</span><span class="chip">Zapier</span>
+        </div>
+      </div>
+      <div>
+        <p class="stack-group-label">AI models</p>
+        <div class="chip-row">
+          <span class="chip">OpenAI</span><span class="chip">Claude</span><span class="chip">Groq · Llama</span>
+        </div>
+      </div>
+      <div>
+        <p class="stack-group-label">Channels</p>
+        <div class="chip-row">
+          <span class="chip">WhatsApp API</span><span class="chip">Telegram</span><span class="chip">Termii SMS</span>
+        </div>
+      </div>
+      <div>
+        <p class="stack-group-label">Data & CRM</p>
+        <div class="chip-row">
+          <span class="chip">Airtable</span><span class="chip">HubSpot</span><span class="chip">Google Sheets</span><span class="chip">Supabase</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="log" class="reveal">
+    <div class="node">
+      <span class="node-dot"></span>
+      <span class="node-line"></span>
+      <span class="node-label mono" id="logCount">build log · 14 systems</span>
+    </div>
+    <h2 class="section-title">Every system, wired and shipped.</h2>
+
+    <div class="filter-row" id="filterRow"></div>
+    <div class="build-list" id="buildList"></div>
+  </section>
+
+  <footer class="reveal">
+    <div class="node">
+      <span class="node-dot"></span>
+      <span class="node-line"></span>
+      <span class="node-label mono">terminal</span>
+    </div>
+    <h2 class="section-title">Got a process that shouldn't need a human anymore?</h2>
+    <p style="max-width:56ch; margin-bottom:32px;">
+      Tell me what's eating your team's time, and I'll tell you honestly
+      whether it's worth automating.
+    </p>
+    <div class="contact-row">
+      <a href="https://wa.me/2347082993085">WhatsApp — +234 708 299 3085</a>
+      <a href="mailto:olonadejulius105@gmail.com">olonadejulius105@gmail.com</a>
+    </div>
+    <p class="footer-brand">JayFresh Automation — Lagos, Nigeria</p>
+  </footer>
+
+</div>
+
+<script>
+  var BUILDS = [
+    {id:"U01", title:"AI-Ranked Opportunity Pipeline", category:"Sales & Leads", status:"Shipped", flagship:true,
+     problem:"Sourcing and scoring job or lead opportunities by hand across multiple sources eats hours and misses the good ones.",
+     solution:"A multi-source pipeline that pulls opportunities in, normalizes and dedupes them, scores fit and win-probability against a skill profile using AI, then routes each one into a CRM with the reasoning attached and a summary for the team.",
+     tools:["n8n","OpenAI","CRM"]},
+    {id:"U02", title:"GridEye — Solar Fault Monitor", category:"Monitoring & Alerts", status:"Shipped", flagship:true,
+     problem:"An undetected MPPT charge-controller fault once ran a client's battery bank flat at 89°C before anyone knew — solar installers had no way to catch faults remotely.",
+     solution:"A 3-step monitoring workflow reads fault codes off RS485/RS232, fires an instant Telegram alert to the engineer with the client name and fault detail, and sends a calm reassurance message to the client — configured per client with its own bot and chat ID.",
+     tools:["n8n","Telegram","RS485/RS232"]},
+    {id:"U03", title:"End-to-End Sales Lead Workflow", category:"Sales & Leads", status:"Shipped",
+     problem:"A B2B SaaS team was capturing leads with no consistent way to qualify, log, or follow up on them fast.",
+     solution:"A webhook captures each lead, AI scores and qualifies it, logs it straight to HubSpot, sends an automatic follow-up email, and alerts the team — with error handling built in throughout.",
+     tools:["n8n","Webhook","OpenAI","HubSpot","Gmail"], value:"$80–150"},
+    {id:"U04", title:"Quick Lead Qualify & Team Alert", category:"Sales & Leads", status:"Shipped",
+     problem:"A marketing agency's web-form leads sat in an inbox with no scoring, so hot leads waited as long as cold ones.",
+     solution:"A form webhook feeds an AI scoring and tagging step, logs everything to a CRM or Sheet, and pushes hot leads straight to the sales Slack channel.",
+     tools:["n8n","Webhook","OpenAI","Slack"], value:"$70–140"},
+    {id:"U05", title:"JayFitness Gym Renewal System", category:"Client Ops", status:"Shipped",
+     problem:"A 50-member gym was tracking membership expiry by hand — reminders got missed, and payment confirmation meant a manual back-and-forth.",
+     solution:"Two linked workflows: one scans Airtable daily and emails renewal reminders as expiry nears, notifying staff on Telegram; the other takes a member's renewal submission, routes the payment receipt to management with approve/reject buttons, and updates records and the member automatically either way.",
+     tools:["n8n","Airtable","Telegram","ImgBB"], impact:"~5–8 admin hours saved per week"},
+    {id:"U06", title:"AI Email Classification", category:"Internal Tools", status:"Shipped",
+     problem:"A business receiving 50+ emails a day had no consistent way to route them to the right department fast.",
+     solution:"Every new email is classified by AI into one of six departments, triggers an instant branded auto-reply to the sender, and posts a preview to the right Slack channel.",
+     tools:["n8n","Groq · Llama 3.1","Gmail","Slack"], impact:"~4 hours saved per day"},
+    {id:"U07", title:"PalmPay Credit Alert Bot", category:"Client Ops", status:"Shipped",
+     problem:"Staff had to call the business owner to confirm a payment landed before serving a customer — slow, and it caused friction at the counter.",
+     solution:"Gmail is watched for PalmPay credit notifications, passed through an LLM, and turned into a styled email alert plus an SMS — so any connected staff member sees confirmation instantly.",
+     tools:["n8n","Groq","Termii SMS"], impact:"Staff now handle 100+ clients without a phone call"},
+    {id:"U08", title:"AI Email Draft Agent", category:"Internal Tools", status:"Shipped",
+     problem:"An independent consultant answered the same inbound questions repeatedly, each time hunting for the right file to attach.",
+     solution:"Inbound emails get an AI-drafted reply with the correct file pulled automatically from Drive — left in Gmail Drafts for a human to review before it ever sends.",
+     tools:["n8n","Gmail","Google Drive","OpenAI"], value:"$100–250"},
+    {id:"U09", title:"Inbox Triage Agent", category:"Internal Tools", status:"Shipped",
+     problem:"A home-services company's inquiry inbox was a wall of unstructured messages — easy to miss a deadline buried in the text.",
+     solution:"Every inquiry is read and broken down into action, deadline, and open questions, then posted to Slack in a structured format.",
+     tools:["n8n","Claude / OpenAI","Gmail","Slack"], value:"$60–120"},
+    {id:"U10", title:"Date-Triggered Trip Reminder", category:"Client Ops", status:"Shipped",
+     problem:"A travel agency was reminding clients about upcoming trips manually, with no reliable way to avoid double-sending.",
+     solution:"Reads a Google Sheet on a schedule and sends WhatsApp reminders 3 days before departure and 1 day after return, tracking what's already been sent to prevent duplicates.",
+     tools:["n8n","Google Sheets","WhatsApp API"], value:"$80–150"},
+    {id:"U11", title:"Workspace AI Mini-Workflows", category:"Internal Tools", status:"Shipped",
+     problem:"An internal ops team spent time manually summarizing labeled emails and drafting the same style of document over and over.",
+     solution:"One workflow summarizes labeled emails to a tracking sheet; a second auto-drafts a Google Doc from a template the moment a new row appears.",
+     tools:["n8n","Gmail","Google Sheets","Google Docs"], value:"$50–120"},
+    {id:"U12", title:"Bliss Autos WhatsApp Assistant", category:"Comms & Support", status:"Shipped",
+     problem:"An auto dealer needed a WhatsApp presence that could actually answer inventory, pricing, and service questions in their voice.",
+     solution:"Scoped end-to-end through a detailed intake covering inventory and pricing, payment and delivery, customer service, operations, and brand tone, then built and handed over.",
+     tools:["n8n","WhatsApp"]},
+    {id:"U13", title:"DM Automation for E-commerce", category:"Comms & Support", status:"Shipped",
+     problem:"A Lagos-based e-commerce seller was losing sales in the gap between a DM landing and a human replying.",
+     solution:"Automated WhatsApp and Instagram DM handling, pitched and delivered with a branded proposal and a live interactive demo, priced as a one-time setup plus monthly retainer.",
+     tools:["n8n","Supabase","Termii"]},
+    {id:"U14", title:"AI Image Cleanup Pipeline", category:"Internal Tools", status:"Shipped",
+     problem:"Raw product photos dropped into a shared folder came in inconsistent — different backgrounds, sizes, and quality — before they could go anywhere public-facing.",
+     solution:"A Dropbox trigger resizes, cleans backgrounds, and standardizes each photo, saving the result to a ready folder while the originals stay untouched — with dual logging for raw and processed files.",
+     tools:["n8n","Dropbox","OpenAI Image API"], value:"$60–140"}
+  ];
+
+  var CATEGORIES = ["All","Sales & Leads","Client Ops","Comms & Support","Monitoring & Alerts","Internal Tools"];
+  var currentFilter = "All";
+  var openId = "U01";
+
+  // simple line-art icon set — generic (not brand logos), used both as
+  // floating background motifs and as per-category build thumbnails
+  var ICONS = {
+    gear: '<path d="M12 8a4 4 0 100 8 4 4 0 000-8z"/><path d="M19.4 13a1.7 1.7 0 00.3-1 1.7 1.7 0 00-.3-1l1.6-1.2-1.5-2.6-1.9.6a6.9 6.9 0 00-1.7-1L15.5 4h-3l-.4 2.8a6.9 6.9 0 00-1.7 1l-1.9-.6-1.5 2.6L8.6 11a1.7 1.7 0 00-.3 1c0 .3.1.7.3 1l-1.6 1.2 1.5 2.6 1.9-.6c.5.4 1.1.8 1.7 1l.4 2.8h3l.4-2.8c.6-.2 1.2-.6 1.7-1l1.9.6 1.5-2.6L19.4 13z"/>',
+    chat: '<path d="M4 5h16v11H8l-4 4V5z"/>',
+    mail: '<path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/>',
+    bolt: '<path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/>',
+    loop: '<path d="M4 12a8 8 0 0113-6.2M20 12a8 8 0 01-13 6.2"/><path d="M17 3v4h-4M7 21v-4h4"/>',
+    terminal: '<path d="M4 4h16v16H4z"/><path d="M8 9l3 3-3 3M13 15h4"/>',
+    signal: '<path d="M4 20h2M9 20V13M14 20V8M19 20V4"/>',
+    clock: '<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>',
+    db: '<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>',
+    node: '<circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l7.5 8M16 7L9 15"/>'
+  };
+
+  function iconSvg(name, size) {
+    size = size || 24;
+    return '<svg viewBox="0 0 24 24" width="' + size + '" height="' + size + '" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">' + ICONS[name] + '</svg>';
+  }
+
+  var CATEGORY_ICON = {
+    "Sales & Leads": "loop",
+    "Client Ops": "gear",
+    "Comms & Support": "chat",
+    "Monitoring & Alerts": "signal",
+    "Internal Tools": "terminal"
+  };
+
+  function buildFloatingIcons() {
+    var container = document.getElementById('bgIcons');
+    var names = Object.keys(ICONS);
+    var count = window.innerWidth < 480 ? 9 : 14;
+    for (var i = 0; i < count; i++) {
+      var name = names[Math.floor(Math.random() * names.length)];
+      var size = 22 + Math.random() * 22;
+      var el = document.createElement('div');
+      el.className = 'floating-icon';
+      el.style.top = (Math.random() * 100) + '%';
+      el.style.left = (Math.random() * 100) + '%';
+      el.style.opacity = (0.05 + Math.random() * 0.08).toFixed(2);
+      el.style.animationDuration = (14 + Math.random() * 16) + 's';
+      el.style.animationDelay = (-Math.random() * 20) + 's';
+      el.innerHTML = iconSvg(name, size);
+      container.appendChild(el);
+    }
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
+  function renderFilters() {
+    var row = document.getElementById('filterRow');
+    row.innerHTML = CATEGORIES.map(function(c) {
+      var active = c === currentFilter ? ' active' : '';
+      return '<button class="filter-btn' + active + '" data-cat="' + escapeHtml(c) + '">' + escapeHtml(c) + '</button>';
+    }).join('');
+    row.querySelectorAll('.filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        currentFilter = btn.getAttribute('data-cat');
+        renderFilters();
+        renderBuilds();
+      });
+    });
+  }
+
+  function statusTagClass(status) {
+    return status === 'Shipped' ? 'tag-shipped' : 'tag-progress';
+  }
+
+  function renderBuilds() {
+    var list = document.getElementById('buildList');
+    var visible = currentFilter === "All" ? BUILDS : BUILDS.filter(function(b) { return b.category === currentFilter; });
+
+    list.innerHTML = visible.map(function(b) {
+      var isOpen = b.id === openId;
+      var toolsHtml = b.tools.map(function(t) {
+        return '<span class="tool-chip">' + escapeHtml(t) + '</span>';
+      }).join('');
+      return (
+        '<div class="build-panel' + (isOpen ? ' open' : '') + '" data-id="' + b.id + '">' +
+          '<button class="build-panel-head" data-toggle="' + b.id + '">' +
+            '<div class="build-thumb-col">' +
+              '<div class="build-thumb">' + iconSvg(CATEGORY_ICON[b.category] || 'node', 22) + '</div>' +
+              '<span class="build-id mono">' + b.id + '</span>' +
+            '</div>' +
+            '<div class="build-head-main">' +
+              '<div class="build-title-row">' +
+                '<span class="build-title">' + escapeHtml(b.title) + '</span>' +
+                (b.flagship ? '<span class="tag tag-flagship">flagship</span>' : '') +
+                '<span class="tag ' + statusTagClass(b.status) + '">' + escapeHtml(b.status) + '</span>' +
+              '</div>' +
+              '<p class="build-category">' + escapeHtml(b.category) + '</p>' +
+            '</div>' +
+            '<span class="build-plus">+</span>' +
+          '</button>' +
+          '<div class="build-detail">' +
+            '<div class="build-detail-inner">' +
+              '<p class="detail-label">The problem</p>' +
+              '<p class="detail-text">' + escapeHtml(b.problem) + '</p>' +
+              '<p class="detail-label">What it does</p>' +
+              '<p class="detail-text">' + escapeHtml(b.solution) + '</p>' +
+              (b.impact ? '<p class="impact-text">' + escapeHtml(b.impact) + '</p>' : '') +
+              '<div class="tool-row">' + toolsHtml +
+                (b.value ? '<span class="value-text">' + escapeHtml(b.value) + '</span>' : '') +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+
+    list.querySelectorAll('[data-toggle]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = btn.getAttribute('data-toggle');
+        openId = (openId === id) ? null : id;
+        renderBuilds();
+      });
+    });
+  }
+
+  document.getElementById('logCount').textContent = 'build log · ' + BUILDS.length + ' systems';
+  renderFilters();
+  renderBuilds();
+  buildFloatingIcons();
+
+  setTimeout(function() {
+    document.getElementById('tracePath').classList.add('on');
+    document.getElementById('headline').classList.add('on');
+  }, 200);
+
+  // scroll-reveal for major sections
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }
+</script>
+
+</body>
+</html>
